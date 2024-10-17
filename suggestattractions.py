@@ -1,16 +1,6 @@
 import requests
 
 def get_lat_lng(api_key, city_name):
-    """
-    Get latitude and longitude for a city using Google Geocoding API.
-    
-    Parameters:
-        api_key (str): Your Google Geocoding API key.
-        city_name (str): Name of the city.
-    
-    Returns:
-        tuple: Latitude and longitude of the city.
-    """
     geocode_url = "https://maps.googleapis.com/maps/api/geocode/json"
     
     params = {
@@ -34,19 +24,6 @@ def get_lat_lng(api_key, city_name):
 
 
 def get_top_5_nearby_attractions(api_key, lat, lng, radius=1000, attraction_type='tourist_attraction'):
-    """
-    Fetch top 5 nearby attractions using Google Places API.
-    
-    Parameters:
-        api_key (str): Your Google Places API key.
-        lat (float): Latitude of the location.
-        lng (float): Longitude of the location.
-        radius (int): Search radius in meters (default: 1000).
-        attraction_type (str): Type of place to search for (default: 'tourist_attraction').
-    
-    Returns:
-        list: List of top 5 nearby attractions with their name and address.
-    """
     url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
     
     params = {
@@ -88,7 +65,7 @@ def main():
     lat, lng = get_lat_lng(API_KEY, city_name)
     
     if lat and lng:
-        print(f"Fetching top 5 attractions near {city_name}...\n")
+        print(f"Fetching top 3 attractions near {city_name}...\n")
         
         # Get the top 5 nearby attractions
         top_5_attractions = get_top_5_nearby_attractions(API_KEY, lat, lng)
